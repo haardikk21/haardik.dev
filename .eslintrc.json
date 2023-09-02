@@ -12,7 +12,11 @@
   "overrides": [
     {
       "files": ["**/*.ts", "**/*.tsx"],
-      "plugins": ["tailwindcss", "simple-import-sort"]
+      "plugins": ["tailwindcss", "simple-import-sort"],
+      "extends": [
+        "plugin:tailwindcss/recommended",
+        "plugin:prettier/recommended"
+      ]
     }
   ]
 }
