@@ -16,7 +16,10 @@
       "extends": [
         "plugin:tailwindcss/recommended",
         "plugin:prettier/recommended"
-      ]
+      ],
+      "rules": {
+        "@next/next/no-img-element": "off"
+      }
     }
   ]
 }

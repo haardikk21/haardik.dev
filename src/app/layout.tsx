@@ -1,11 +1,38 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Raleway } from 'next/font/google';
+import localFont from 'next/font/local';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Navbar } from '@/components/navbar';
 import { Footer } from '@/components/footer';
 
-const raleway = Raleway({ subsets: ['latin'] });
+const sfPro = localFont({
+  src: [
+    {
+      path: '../fonts/SFProDisplay-Light.woff2',
+      weight: '300',
+    },
+    {
+      path: '../fonts/SFProDisplay-Regular.woff2',
+      weight: '400',
+    },
+    {
+      path: '../fonts/SFProDisplay-Medium.woff2',
+      weight: '500',
+    },
+    {
+      path: '../fonts/SFProDisplay-Semibold.woff2',
+      weight: '600',
+    },
+    {
+      path: '../fonts/SFProDisplay-Bold.woff2',
+      weight: '700',
+    },
+    {
+      path: '../fonts/SFProDisplay-Heavy.woff2',
+      weight: '800',
+    },
+  ],
+});
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -19,7 +46,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={raleway.className}>
+      <body className={sfPro.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="mx-auto flex min-h-screen max-w-4xl flex-col">
             <Navbar />
