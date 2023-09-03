@@ -81,11 +81,21 @@ module.exports = {
           '70%': { transform: 'rotate(0.0deg)' },
           '100%': { transform: 'rotate(0.0deg)' },
         },
+        'short-eq': {
+          '0%, 100%': { height: '8px' },
+          '50%': { height: '4px' },
+        },
+        'tall-eq': {
+          '0%, 100%': { height: '12px' },
+          '50%': { height: '6px' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         wave: 'wave 1.5s infinite',
+        'short-eq': 'short-eq 0.5s infinite',
+        'tall-eq': 'tall-eq 0.5s infinite',
       },
     },
   },

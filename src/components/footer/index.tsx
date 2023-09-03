@@ -102,7 +102,7 @@ export function Footer() {
 
       <Link
         target="_blank"
-        href="mailto:haardik@haardik.dev"
+        href="mailto:haardik@learnweb3.io"
         className="flex h-7 w-7 items-center justify-center rounded-md p-1 transition-all hover:bg-accent"
       >
         <MailIcon className="h-4 w-4 fill-current stroke-accent" />

@@ -37,7 +37,7 @@ export function Navbar() {
             key={page.href}
             href={page.href}
             className={cn(
-              'text-sm hover:font-semibold transition-all',
+              'text-sm hover:text-primary transition-all',
               isActive(page.href) && 'font-bold',
             )}
           >
