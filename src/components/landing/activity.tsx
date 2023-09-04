@@ -138,7 +138,8 @@ async function getData() {
   return data;
 }
 
-export const revalidate = 60 * 5; // revalidate at most every 10 minutes
+export const revalidate = 0;
+export const dynamic = 'force-dynamic';
 
 export async function Activity() {
   const data = await getData();
@@ -180,7 +181,7 @@ export async function Activity() {
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                     fill="#1ed760"
-                    className="w-6 rotate-180"
+                    className="w-6 shrink-0 rotate-180"
                   >
                     <rect
                       className="animate-short-eq delay-200"
