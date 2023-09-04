@@ -2,11 +2,110 @@ import Link from 'next/link';
 
 const TimelineItems = [
   {
+    id: 19,
+    startDate: 'Aug 2022',
+    endDate: 'Present',
+    logo: '/logos/lw3logomark.png',
+    link: 'https://learnweb3.io/',
+    label: 'LearnWeb3',
+    secondaryLabel: 'Co-Founder',
+    description:
+      'LearnWeb3 is a free platform to help developer students from around the world upskill themselves by learning about next-gen technologies like blockchain and AI to help them shape the path to our future. Currently serving over 100,000 students - it is one of the largest online educational platforms in the space, along with providing other opportunities through Bounties, Events, Hackathons, and Live Events. Our goal is to make learning about technologies that will change the world forever accessible to everyone with as little a barrier to entry as possible.',
+  },
+  {
+    id: 18,
+    startDate: 'Aug 2023',
+    endDate: 'Present',
+    logo: '/logos/openfarcaster.png',
+    link: 'https://github.com/OpenFarcaster',
+    label: 'Teleport (Open Farcaster)',
+    secondaryLabel: 'Builder',
+    description:
+      'Teleport is a fast and secure implementation of the Farcaster Protocol Hub specification, written in Rust. The goal with Teleport is to help improve client diversity in the Farcaster ecosystem and provide stronger memory safety guarantees while achieving high performance. This is currently an under-development project.',
+  },
+  {
+    id: 17,
+    startDate: 'Nov 2022',
+    endDate: '',
+    logo: '/logos/near.png',
+    link: 'https://devpost.com/software/indices-finance',
+    label: 'NEAR MetaBUILD III',
+    secondaryLabel: 'Native Track Winner',
+    description:
+      'Built Indices Finance - a platform to create, buy, and manage crypto index funds on the NEAR Blockchain built on top of Ref Finance and using Rust. This project won a prize in the Native Track at the hackathon.',
+  },
+  {
+    id: 16,
+    startDate: 'Jul 2021',
+    endDate: 'Sep 2022',
+    logo: '/logos/ceramic.png',
+    link: 'https://ceramic.network',
+    label: 'Ceramic Network',
+    secondaryLabel: 'Protocol Engineer',
+    description:
+      'At Ceramic Network, I dove back into the Decentralized Identity rabbithole and helped build a global, public, decentralized NoSQL database to unlock the data economy. I wrote a specification for using EIP-712 signatures as a scheme for JSON-LD Verifiable Credentials. I also authored CAIP-122, the Sign in with X standard to create a chain-agnostic blockchain authentication mechanism, and CAIP-74, the Chain Agnostic Capability Object (CACAO) standard to use CAIP-74 messages as an object capability method for delegating access to resources to other identities in a self-sovereign manner. I built proofs of concept for CACAO on Ethereum and Solana, both of which are widely in use today - most popularly within the Gitcoin Passport application. Apart from the standards work, I contributed to the Ceramic Network node (js-ceramic), the DID library packages (js-did), and Rebase (rebase-xyz).',
+  },
+  {
+    id: 15,
+    startDate: 'May 2018',
+    endDate: 'May 2023',
+    logo: '/logos/uwbc.webp',
+    link: 'https://waterlooblockchain.com',
+    label: 'Waterloo Blockchain',
+    secondaryLabel: 'President',
+    description:
+      'I started and was President at the University of Waterloo Blockchain Club (now Waterloo Blockchain) for several years while in University. During my role there, I conducted several workshops, got sponsorships from Brave, ConsenSys, Algorand, and several other companies for the club, and grew the club from zero to hundreds of members.',
+  },
+  {
+    id: 14,
+    startDate: 'Apr 2021',
+    endDate: '',
+    logo: '/logos/scalingeth.svg',
+    link: 'https://www.youtube.com/watch?app=desktop&v=UqgxEuUOpU0',
+    label: 'Scaling Ethereum 2021',
+    secondaryLabel: 'Overall + 7 Sponsor Prizes Winner',
+    description:
+      "Built NFT Puzzle Thing - an onchain puzzle solving game deployed to Polygon, Arbitrum, and SKALE that used Chainlink VRF's for randomness along with meta-transactions and fiat-payment rails through Stripe to help onboard Web2 users. After the hackathon, the project was continued and we worked with Animetas, Savage Dogs, Purrnelopes Country Club, Ether Cards, and several other NFT collections to run the game as a community event. We won the overall prize along with sponsor prizes from Chainlink, Arbitrum, SKALE, The Graph, Protocol Labs, and Polygon Labs.",
+  },
+  {
+    id: 13,
+    startDate: 'Feb 2021',
+    endDate: '',
+    logo: '/logos/ethdenver2021.png',
+    link: 'https://github.com/Ryan-Ouyang/NFTea-Room',
+    label: 'ETHDenver 2021',
+    secondaryLabel: 'Top 20 + 3 Sponsor Prizes Winner',
+    description:
+      'Built NFTea Room - a platform to supply and decide accurate pricing information for NFTs using a decentralized and democratic voting process. Won a Top 20 prize from the overall judging panel, along with bounties from IPFS, Textile, and DAOHaus.',
+  },
+  {
+    id: 12,
+    startDate: 'Nov 2020',
+    endDate: 'May 2021',
+    logo: '/logos/hyplabs.png',
+    link: 'https://hypotenuse.ca',
+    label: 'Hypotenuse Labs',
+    secondaryLabel: 'Software Engineer',
+    description:
+      'At Hypotenuse Labs, I worked as a software engineering consultant for Algorand, Internet Computer (Dfinity), and a few other clients. I, along with Anthony Zhang, theorized and built the first AMM DEX on Algorand using the TEAL Language - a project I am particularly proud of. I also built an Oracle Service Framework for ICP using Motoko and Golang, and contributed to a couple of Web2 projects.',
+  },
+  {
+    id: 11,
+    startDate: 'Jan 2019',
+    endDate: 'Feb 2021',
+    logo: '/logos/flexfintx.jpeg',
+    link: 'https://widgets.weforum.org/techpioneers-2021/',
+    label: 'Flexible Fintech',
+    secondaryLabel: 'Sovereign Identity Explorer',
+    description:
+      'Spent a couple of years exploring decentralized identity technologies and how they can be used for the welfare of developing nations, particularly in Africa. Participated in the Decentralized Identity Foundation, was part of TechStars 2020, got recognized by the World Economic Forum as a Technology Pioneer in 2021, and built several innovative identity solutions atop DID and VC technologies. This also further led me to become extremely interested in the identity space leading me to my future (and current) work.',
+  },
+  {
     id: 10,
     startDate: 'Feb 2020',
     endDate: '',
     logo: '/logos/ethdenver2020.png',
-    link: 'https://www.ethdenver.com/',
+    link: 'https://github.com/Ryan-Ouyang/Ledgerlocker',
     label: 'ETHDenver 2020',
     secondaryLabel: '4 Sponsor Prizes Winner',
     description:
@@ -28,7 +127,7 @@ const TimelineItems = [
     startDate: 'Nov 2019',
     endDate: '',
     logo: '/logos/ethwaterloo.png',
-    link: 'https://www.ethglobal.com/',
+    link: 'https://github.com/ConveyChat/Convey',
     label: 'ETHWaterloo 2019',
     secondaryLabel: 'Overall + 5 Sponsor Prizes Winner',
     description:
@@ -102,7 +201,7 @@ const TimelineItems = [
   },
   {
     id: 1,
-    startDate: 'July 2016',
+    startDate: 'Jul 2016',
     endDate: 'Aug 2016',
     logo: '/logos/espr.png',
     link: 'https://espr.camp',
@@ -120,11 +219,11 @@ export function Timeline() {
         <h3 className="text-2xl font-semibold">Timeline</h3>
       </div>
 
-      <div className="flex h-96 flex-col gap-4 overflow-y-scroll">
+      <div className="flex h-[30rem] flex-col gap-4 overflow-y-scroll">
         {TimelineItems.map((item) => (
           <Link key={item.id} href={item.link} target="_blank">
             <div className="flex gap-4">
-              <div className="flex shrink-0 flex-col text-sm text-muted-foreground">
+              <div className="flex w-max shrink-0 flex-col font-mono text-sm text-muted-foreground">
                 <span>{item.endDate}</span>
                 <span>{item.startDate}</span>
               </div>
@@ -143,7 +242,7 @@ export function Timeline() {
                   />
                   <span className="font-medium">{item.label}</span>
                   <span> • </span>
-                  <span className="font-medium text-muted-foreground">
+                  <span className="font-medium text-muted-foreground transition-all duration-300 group-hover:text-accent-foreground">
                     {item.secondaryLabel}
                   </span>
                 </div>

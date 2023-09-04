@@ -63,7 +63,7 @@
 
   /* Track */
   ::-webkit-scrollbar-track {
-    @apply rounded-md bg-foreground;
+    @apply rounded-md bg-card;
   }
 
   /* Handle */
