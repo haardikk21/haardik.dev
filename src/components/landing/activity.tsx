@@ -173,7 +173,7 @@ export async function Activity() {
               />
 
               <div className="flex flex-col gap-2">
-                <div className="flex items-end gap-1">
+                <div className="flex items-start gap-1">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -244,7 +244,7 @@ export async function Activity() {
         </Card>
       )}
 
-      <Card>
+      <Card className="flex h-full flex-col">
         <CardHeader>
           <CardTitle className="flex items-center gap-4">
             <svg
@@ -270,12 +270,14 @@ export async function Activity() {
             <span className="text-xl font-semibold">Latest Cast</span>
           </CardTitle>
         </CardHeader>
+        <div className="grow" />
         <CardContent>
           <Link href={data.cast.url} target="_blank">
             <blockquote className="border-l-2 pl-6 italic">
               {data.cast.text}
             </blockquote>
           </Link>
+
           <p className="mt-4 text-muted-foreground">
             {timeSince(new Date(data.cast.timestamp))}
           </p>
