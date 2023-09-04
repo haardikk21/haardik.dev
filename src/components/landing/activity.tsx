@@ -138,6 +138,8 @@ async function getData() {
   return data;
 }
 
+export const revalidate = 60 * 5; // revalidate at most every 10 minutes
+
 export async function Activity() {
   const data = await getData();
 

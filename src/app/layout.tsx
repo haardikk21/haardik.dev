@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   title: 'Haardik H',
   description:
     "Hey, I'm Haardik 👋! A 24 year old software engineer currently living in Canada, on a pursuit for learning. Currently helping run LearnWeb3, a free platform to help upskill developer students.",
-  icons: '/favicon.png',
+  icons: '/haardik.jpeg',
 };
 
 export default function RootLayout({
