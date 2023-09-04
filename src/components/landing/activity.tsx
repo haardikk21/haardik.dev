@@ -4,25 +4,23 @@ import { GithubIcon } from 'lucide-react';
 import Link from 'next/link';
 
 type SpotifyTrack = {
-  track: {
+  name: string;
+  album: {
     name: string;
-    album: {
+    artists: {
+      external_urls: {
+        spotify: string;
+      };
       name: string;
-      artists: {
-        external_urls: {
-          spotify: string;
-        };
-        name: string;
-      }[];
-      images: {
-        height: number;
-        width: number;
-        url: string;
-      }[];
-    };
-    external_urls: {
-      spotify: string;
-    };
+    }[];
+    images: {
+      height: number;
+      width: number;
+      url: string;
+    }[];
+  };
+  external_urls: {
+    spotify: string;
   };
 };
 
@@ -63,10 +61,13 @@ async function getSpotifyData(): Promise<SpotifyTrack | null> {
   const accessToken = accessTokenBody.access_token;
 
   const response = await fetch(
-    'https://api.spotify.com/v1/me/player/recently-played?limit=1',
+    'https://api.spotify.com/v1/me/player/currently-playing',
     {
       headers: {
         Authorization: `Bearer ${accessToken}`,
+      },
+      next: {
+        revalidate: 0,
       },
     },
   );
@@ -76,7 +77,8 @@ async function getSpotifyData(): Promise<SpotifyTrack | null> {
   }
 
   const data = await response.json();
-  return data.items[0] as SpotifyTrack;
+
+  return data.item as SpotifyTrack;
 }
 
 async function getGithubData(): Promise<GithubCommit | null> {
@@ -85,6 +87,9 @@ async function getGithubData(): Promise<GithubCommit | null> {
     {
       headers: {
         Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+      },
+      next: {
+        revalidate: 0,
       },
     },
   );
@@ -110,6 +115,11 @@ async function getGithubData(): Promise<GithubCommit | null> {
 async function getLatestCast(): Promise<Cast> {
   const response = await fetch(
     `https://api.neynar.com/v1/farcaster/casts/?api_key=${process.env.NEYNAR_API_KEY}&fid=8113&limit=1`,
+    {
+      next: {
+        revalidate: 0,
+      },
+    },
   );
   const json = await response.json();
 
@@ -138,9 +148,6 @@ async function getData() {
   return data;
 }
 
-export const revalidate = 0;
-export const dynamic = 'force-dynamic';
-
 export async function Activity() {
   const data = await getData();
 
@@ -165,14 +172,14 @@ export async function Activity() {
             </CardTitle>
           </CardHeader>
           <Link
-            href={data.spotify.track.external_urls.spotify ?? '#'}
+            href={data.spotify.external_urls.spotify ?? '#'}
             target="_blank"
           >
             <CardContent className="flex items-center gap-4">
               <img
-                src={data.spotify.track.album.images[0].url}
+                src={data.spotify.album.images[0].url}
                 className="h-16 rounded-sm"
-                alt={data.spotify.track.album.name}
+                alt={data.spotify.album.name}
               />
 
               <div className="flex flex-col gap-2">
@@ -207,14 +214,12 @@ export async function Activity() {
                   </svg>
 
                   <span className="line-clamp-2 font-bold">
-                    {data.spotify.track.name}
+                    {data.spotify.name}
                   </span>
                 </div>
 
                 <span>
-                  {data.spotify.track.album.artists
-                    .map((a) => a.name)
-                    .join(', ')}
+                  {data.spotify.album.artists.map((a) => a.name).join(', ')}
                 </span>
               </div>
             </CardContent>
