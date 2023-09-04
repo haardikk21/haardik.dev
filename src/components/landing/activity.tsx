@@ -205,7 +205,9 @@ export async function Activity() {
                     />
                   </svg>
 
-                  <span className="font-bold">{data.spotify.track.name}</span>
+                  <span className="line-clamp-2 font-bold">
+                    {data.spotify.track.name}
+                  </span>
                 </div>
 
                 <span>
@@ -275,7 +277,7 @@ export async function Activity() {
         <div className="grow" />
         <CardContent>
           <Link href={data.cast.url} target="_blank">
-            <blockquote className="border-l-2 pl-6 italic">
+            <blockquote className="line-clamp-2 border-l-2 pl-6 italic">
               {data.cast.text}
             </blockquote>
           </Link>
