@@ -54,6 +54,9 @@ async function getSpotifyData(): Promise<SpotifyTrack | null> {
       body:
         'grant_type=refresh_token&refresh_token=' +
         process.env.SPOTIFY_REFRESH_TOKEN,
+      next: {
+        revalidate: 0,
+      },
     },
   );
 
@@ -77,7 +80,6 @@ async function getSpotifyData(): Promise<SpotifyTrack | null> {
   }
 
   const data = await response.json();
-
   return data.item as SpotifyTrack;
 }
 
