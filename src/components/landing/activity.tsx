@@ -63,7 +63,7 @@ async function getSpotifyData(): Promise<SpotifyTrack | null> {
   const accessTokenBody = await accessTokenResponse.json();
   const accessToken = accessTokenBody.access_token;
 
-  const response = await fetch(
+  const currentlyPlayingResponse = await fetch(
     'https://api.spotify.com/v1/me/player/currently-playing',
     {
       headers: {
@@ -75,12 +75,25 @@ async function getSpotifyData(): Promise<SpotifyTrack | null> {
     },
   );
 
-  if (response.status === 204 || response.status > 400) {
-    return null;
+  if (currentlyPlayingResponse.status === 200) {
+    const data = await currentlyPlayingResponse.json();
+    return data.item as SpotifyTrack;
   }
 
-  const data = await response.json();
-  return data.item as SpotifyTrack;
+  const recentlyPlayedResponse = await fetch(
+    'https://api.spotify.com/v1/me/player/recently-played?limit=1',
+    {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      next: {
+        revalidate: 0,
+      },
+    },
+  );
+
+  const data = await recentlyPlayedResponse.json();
+  return data.items[0].track as SpotifyTrack;
 }
 
 async function getGithubData(): Promise<GithubCommit | null> {
