@@ -4,6 +4,7 @@ import localFont from 'next/font/local';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Navbar } from '@/components/navbar';
 import { Footer } from '@/components/footer';
+import { Analytics } from '@vercel/analytics/react';
 
 const sfPro = localFont({
   src: [
@@ -56,6 +57,8 @@ export default function RootLayout({
             <Footer />
           </div>
         </ThemeProvider>
+
+        <Analytics />
       </body>
     </html>
   );
