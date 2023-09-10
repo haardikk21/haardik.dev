@@ -111,16 +111,18 @@ async function getGithubData(): Promise<GithubCommit | null> {
 
   const json = await response.json();
 
-  for (let event of json) {
-    if (event.type === 'PushEvent') {
-      const ghEvent: GithubCommit = {
-        repo: event.repo.name,
-        message: event.payload.commits[0].message,
-        url: `https://github.com/${event.repo.name}/commit/${event.payload.commits[0].sha}`,
-        createdAt: event.created_at,
-      };
+  if (Array.isArray(json) && json.length > 0) {
+    for (let event of json) {
+      if (event.type === 'PushEvent') {
+        const ghEvent: GithubCommit = {
+          repo: event.repo.name,
+          message: event.payload.commits[0].message,
+          url: `https://github.com/${event.repo.name}/commit/${event.payload.commits[0].sha}`,
+          createdAt: event.created_at,
+        };
 
-      return ghEvent;
+        return ghEvent;
+      }
     }
   }
 
