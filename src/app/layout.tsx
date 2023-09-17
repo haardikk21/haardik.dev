@@ -51,7 +51,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={sfPro.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <div className="mx-auto flex min-h-screen max-w-6xl flex-col">
+          <div className="mx-auto flex min-h-screen max-w-6xl flex-col px-6">
             <Navbar />
             <div className="grow">{children}</div>
             <Footer />
