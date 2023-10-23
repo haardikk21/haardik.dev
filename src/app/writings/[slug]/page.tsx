@@ -54,7 +54,6 @@ export default async function Post({ params }: any) {
       </div>
 
       <div className="prose prose-sm mt-6 dark:prose-invert md:prose-base lg:prose-lg">
-        {/* @ts-expect-error Server Component*/}
         <MDXRemote
           source={props.content}
           options={{
