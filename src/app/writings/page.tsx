@@ -44,6 +44,11 @@ export default function Writings() {
           </Card>
         </Link>
       ))}
+
+      <p className="text-sm text-muted-foreground">
+        I&apos;m still working on aggregating my older posts from other
+        platforms here. More coming soon!
+      </p>
     </div>
   );
 }
