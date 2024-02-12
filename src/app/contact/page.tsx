@@ -6,7 +6,7 @@ export default function Contact() {
           <h2 className="text-4xl font-semibold">Contact</h2>
         </div>
 
-        <ul role="list" className="mt-6 flex flex-col gap-2">
+        <ul className="mt-6 flex flex-col gap-2">
           <li className="flex items-center gap-2">
             <span className="font-semibold">Email:</span>
             <a href="mailto:haardik@learnweb3.io">haardik@learnweb3.io</a>
