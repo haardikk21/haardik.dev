@@ -2,6 +2,17 @@ import Link from 'next/link';
 
 const TimelineItems = [
   {
+    id: 20,
+    startDate: 'Apr 2024',
+    endDate: 'Present',
+    logo: '/logos/uniswap-hook-incubator.png',
+    link: 'https://atrium.academy/uniswap',
+    label: 'Uniswap Hook Incubator',
+    secondaryLabel: 'Lead Instructor',
+    description:
+      'Uniswap Hook Incubator is a cutting edge cohort based course designed in the spirit of a hackathon to take existing blockchain developers and train them on cutting edge DeFi concepts by building hooks on Uniswap v4. Proudly funded by Uniswap Foundation.',
+  },
+  {
     id: 19,
     startDate: 'Aug 2022',
     endDate: 'Present',
