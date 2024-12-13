@@ -3,27 +3,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { GithubIcon } from 'lucide-react';
 import Link from 'next/link';
 
-type SpotifyTrack = {
-  name: string;
-  album: {
-    name: string;
-    artists: {
-      external_urls: {
-        spotify: string;
-      };
-      name: string;
-    }[];
-    images: {
-      height: number;
-      width: number;
-      url: string;
-    }[];
-  };
-  external_urls: {
-    spotify: string;
-  };
-};
-
 type GithubCommit = {
   repo: string;
   message: string;
@@ -36,65 +15,6 @@ type Cast = {
   timestamp: string;
   url: string;
 };
-
-async function getSpotifyData(): Promise<SpotifyTrack | null> {
-  const b64ClientCredentials = Buffer.from(
-    process.env.SPOTIFY_CLIENT_ID + ':' + process.env.SPOTIFY_CLIENT_SECRET,
-  ).toString('base64');
-  const authHeader = `Basic ${b64ClientCredentials}`;
-
-  const accessTokenResponse = await fetch(
-    'https://accounts.spotify.com/api/token',
-    {
-      method: 'POST',
-      headers: {
-        Authorization: authHeader,
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body:
-        'grant_type=refresh_token&refresh_token=' +
-        process.env.SPOTIFY_REFRESH_TOKEN,
-      next: {
-        revalidate: 0,
-      },
-    },
-  );
-
-  const accessTokenBody = await accessTokenResponse.json();
-  const accessToken = accessTokenBody.access_token;
-
-  const currentlyPlayingResponse = await fetch(
-    'https://api.spotify.com/v1/me/player/currently-playing',
-    {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-      next: {
-        revalidate: 0,
-      },
-    },
-  );
-
-  if (currentlyPlayingResponse.status === 200) {
-    const data = await currentlyPlayingResponse.json();
-    return data.item as SpotifyTrack;
-  }
-
-  const recentlyPlayedResponse = await fetch(
-    'https://api.spotify.com/v1/me/player/recently-played?limit=1',
-    {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-      next: {
-        revalidate: 0,
-      },
-    },
-  );
-
-  const data = await recentlyPlayedResponse.json();
-  return data.items[0].track as SpotifyTrack;
-}
 
 async function getGithubData(): Promise<GithubCommit | null> {
   const response = await fetch(
@@ -150,14 +70,12 @@ async function getLatestCast(): Promise<Cast> {
 }
 
 async function getData() {
-  const [spotifyData, githubData, latestCast] = await Promise.all([
-    getSpotifyData(),
+  const [githubData, latestCast] = await Promise.all([
     getGithubData(),
     getLatestCast(),
   ]);
 
   const data = {
-    spotify: spotifyData,
     github: githubData,
     cast: latestCast,
   };
@@ -169,81 +87,7 @@ export async function Activity() {
   const data = await getData();
 
   return (
-    <div className="grid gap-8 py-8 md:grid-cols-3">
-      {data.spotify && (
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-8"
-                viewBox="0 0 496 512"
-              >
-                <path
-                  fill="#1ed760"
-                  d="M248 8C111.1 8 0 119.1 0 256s111.1 248 248 248 248-111.1 248-248S384.9 8 248 8Z"
-                />
-                <path d="M406.6 231.1c-5.2 0-8.4-1.3-12.9-3.9-71.2-42.5-198.5-52.7-280.9-29.7-3.6 1-8.1 2.6-12.9 2.6-13.2 0-23.3-10.3-23.3-23.6 0-13.6 8.4-21.3 17.4-23.9 35.2-10.3 74.6-15.2 117.5-15.2 73 0 149.5 15.2 205.4 47.8 7.8 4.5 12.9 10.7 12.9 22.6 0 13.6-11 23.3-23.2 23.3zm-31 76.2c-5.2 0-8.7-2.3-12.3-4.2-62.5-37-155.7-51.9-238.6-29.4-4.8 1.3-7.4 2.6-11.9 2.6-10.7 0-19.4-8.7-19.4-19.4s5.2-17.8 15.5-20.7c27.8-7.8 56.2-13.6 97.8-13.6 64.9 0 127.6 16.1 177 45.5 8.1 4.8 11.3 11 11.3 19.7-.1 10.8-8.5 19.5-19.4 19.5zm-26.9 65.6c-4.2 0-6.8-1.3-10.7-3.6-62.4-37.6-135-39.2-206.7-24.5-3.9 1-9 2.6-11.9 2.6-9.7 0-15.8-7.7-15.8-15.8 0-10.3 6.1-15.2 13.6-16.8 81.9-18.1 165.6-16.5 237 26.2 6.1 3.9 9.7 7.4 9.7 16.5s-7.1 15.4-15.2 15.4z" />
-              </svg>
-              <span className="text-xl font-semibold">Last Played</span>
-            </CardTitle>
-          </CardHeader>
-          <Link
-            href={data.spotify.external_urls.spotify ?? '#'}
-            target="_blank"
-          >
-            <CardContent className="flex items-center gap-4">
-              <img
-                src={data.spotify.album.images[0].url}
-                className="h-16 rounded-sm"
-                alt={data.spotify.album.name}
-              />
-
-              <div className="flex flex-col gap-2">
-                <div className="flex items-start gap-1">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="#1ed760"
-                    className="w-6 shrink-0 rotate-180"
-                  >
-                    <rect
-                      className="animate-short-eq delay-200"
-                      x="4"
-                      y="4"
-                      width="3.7"
-                      height="8"
-                    />
-                    <rect
-                      className="animate-tall-eq delay-300"
-                      x="10.2"
-                      y="4"
-                      width="3.7"
-                      height="16"
-                    />
-                    <rect
-                      className=" animate-short-eq delay-500"
-                      x="16.3"
-                      y="4"
-                      width="3.7"
-                      height="11"
-                    />
-                  </svg>
-
-                  <span className="line-clamp-2 font-bold">
-                    {data.spotify.name}
-                  </span>
-                </div>
-
-                <span>
-                  {data.spotify.album.artists.map((a) => a.name).join(', ')}
-                </span>
-              </div>
-            </CardContent>
-          </Link>
-        </Card>
-      )}
-
+    <div className="grid gap-8 py-8 md:grid-cols-2">
       {data.github && (
         <Card>
           <CardHeader>
