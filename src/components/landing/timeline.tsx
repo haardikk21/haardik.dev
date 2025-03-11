@@ -25,7 +25,7 @@ const TimelineItems = [
   },
   {
     id: 19,
-    startDate: 'Aug 2022',
+    startDate: 'Feb 2022',
     endDate: 'Present',
     logo: '/logos/lw3logomark.png',
     link: 'https://learnweb3.io/',
