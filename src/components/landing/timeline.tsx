@@ -2,6 +2,17 @@ import Link from 'next/link';
 
 const TimelineItems = [
   {
+    id: 21,
+    startDate: 'June 2024',
+    endDate: 'November 2024',
+    logo: '/logos/nucleo.png',
+    link: 'https://nucleo.finance',
+    label: 'Nucleo Finance',
+    secondaryLabel: 'Protocol Engineering Consultant',
+    description:
+      'Nucleo Finance is a unified liquidity layer connecting all blockchains across all virtual machines - secured by EigenLayer',
+  },
+  {
     id: 20,
     startDate: 'Apr 2024',
     endDate: 'Present',
@@ -169,7 +180,7 @@ const TimelineItems = [
   {
     id: 5,
     startDate: 'Sep 2017',
-    endDate: 'Sep 2022',
+    endDate: 'Sep 2021',
     logo: '/logos/uwaterloo.png',
     link: 'https://uwaterloo.ca',
     label: 'University of Waterloo',

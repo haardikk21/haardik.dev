@@ -10,7 +10,7 @@ export function Hero() {
         </div>
 
         <p className="[&:not(:first-child)]:mt-6">
-          I&apos;m a 24 year old software engineer currently living in Canada.
+          I&apos;m a 25 year old software engineer currently living in Canada.
           I&apos;m extremely curious and on a pursuit of knowledge. Currently
           I&apos;m running{' '}
           <Link href="https://learnweb3.io/" target="_blank">
