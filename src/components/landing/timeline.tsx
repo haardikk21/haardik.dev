@@ -4,7 +4,7 @@ const TimelineItems = [
   {
     id: 21,
     startDate: 'June 2024',
-    endDate: 'November 2024',
+    endDate: 'Nov 2024',
     logo: '/logos/nucleo.png',
     link: 'https://nucleo.finance',
     label: 'Nucleo Finance',
