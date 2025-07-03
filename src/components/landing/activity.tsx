@@ -51,8 +51,11 @@ async function getGithubData(): Promise<GithubCommit | null> {
 
 async function getLatestCast(): Promise<Cast> {
   const response = await fetch(
-    `https://api.neynar.com/v1/farcaster/casts/?api_key=${process.env.NEYNAR_API_KEY}&fid=8113&limit=1`,
+    'https://api.neynar.com/v2/farcaster/feed/user/casts/?fid=8113&limit=1',
     {
+      headers: {
+        'x-api-key': process.env.NEYNAR_API_KEY,
+      },
       next: {
         revalidate: 0,
       },
@@ -61,9 +64,9 @@ async function getLatestCast(): Promise<Cast> {
   const json = await response.json();
 
   const cast: Cast = {
-    text: json.result.casts[0].text,
-    timestamp: json.result.casts[0].timestamp,
-    url: `https://warpcast.com/haardikkk/${json.result.casts[0].hash}`,
+    text: json.casts[0].text,
+    timestamp: json.casts[0].timestamp,
+    url: `https://farcaster.xyz/haardikkk/${json.casts[0].hash}`,
   };
 
   return cast;
