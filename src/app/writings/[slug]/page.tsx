@@ -1,10 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import rehypeShiki from '@leafac/rehype-shiki';
+import rehypePrettyCode, { Options } from 'rehype-pretty-code';
 
 import { MDXRemote } from 'next-mdx-remote/rsc';
-import { getHighlighter } from 'shiki';
 
 export async function generateStaticParams() {
   const files = fs.readdirSync(path.join('writings'));
@@ -31,7 +30,8 @@ function getPost({ slug }: { slug: string }) {
   };
 }
 
-export async function generateMetadata({ params }: any) {
+export async function generateMetadata(props: any) {
+  const params = await props.params;
   const blog = getPost(params);
 
   return {
@@ -40,7 +40,12 @@ export async function generateMetadata({ params }: any) {
   };
 }
 
-export default async function Post({ params }: any) {
+const options: Options = {
+  theme: 'one-dark-pro',
+};
+
+export default async function Post(props0: any) {
+  const params = await props0.params;
   const props = getPost(params);
 
   return (
@@ -58,16 +63,7 @@ export default async function Post({ params }: any) {
           source={props.content}
           options={{
             mdxOptions: {
-              rehypePlugins: [
-                [
-                  rehypeShiki,
-                  {
-                    highlighter: await getHighlighter({
-                      theme: 'one-dark-pro',
-                    }),
-                  },
-                ],
-              ],
+              rehypePlugins: [[rehypePrettyCode, options]],
             },
           }}
         />
