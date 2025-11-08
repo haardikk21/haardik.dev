@@ -2,8 +2,19 @@ import Link from 'next/link';
 
 const TimelineItems = [
   {
+    id: 22,
+    startDate: 'May 2025',
+    endDate: 'Present',
+    logo: '/logos/base.svg',
+    link: 'https://base.org',
+    label: 'Base Chain',
+    secondaryLabel: 'Senior Software Engineer',
+    description:
+      'Base is built to empower builders, creators, and people everywhere to build apps, grow businesses, create what they love, and earn onchain.',
+  },
+  {
     id: 21,
-    startDate: 'June 2024',
+    startDate: 'Jun 2024',
     endDate: 'Nov 2024',
     logo: '/logos/nucleo.png',
     link: 'https://nucleo.finance',
@@ -15,7 +26,7 @@ const TimelineItems = [
   {
     id: 20,
     startDate: 'Apr 2024',
-    endDate: 'Present',
+    endDate: 'May 2025',
     logo: '/logos/uniswap-hook-incubator.png',
     link: 'https://atrium.academy/uniswap',
     label: 'Uniswap Hook Incubator',
