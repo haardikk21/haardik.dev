@@ -4,7 +4,6 @@ async function getAllHighlightedRepos() {
   const highlightedRepos = [
     'OpenFarcaster/teleport',
     'haardikk21/starknet-account-recovery',
-    'OpenFarcaster/prost',
     'LearnWeb3DAO/smart-contract-wallet',
     'LearnWeb3DAO/uniswap-v4-take-profits-hook',
     'haardikk21/aiware',

@@ -4,8 +4,8 @@ import Link from 'next/link';
 
 async function getPinnedRepos() {
   const pinnedRepos = [
+    'base/base',
     'OpenFarcaster/teleport',
-    'haardikk21/wanda',
     'securekey/oauth-xyz-nodejs',
     'ceramicnetwork/cacao',
   ];

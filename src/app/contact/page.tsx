@@ -18,11 +18,6 @@ export default function Contact() {
           </li>
 
           <li className="flex items-center gap-2">
-            <span className="font-semibold">Farcaster:</span>
-            <a href="https://warpcast.com/haardikkk">@haardikkk</a>
-          </li>
-
-          <li className="flex items-center gap-2">
             <span className="font-semibold">Github:</span>
             <a href="https://github.com/haardikk21">@haardikk21</a>
           </li>

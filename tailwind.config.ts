@@ -53,7 +53,6 @@ module.exports = {
 
         // Brand Colors
         twitter: '#1DA1F2',
-        farcaster: '#855DCD',
         github: '#333333',
         email: '#EA4335',
       },
